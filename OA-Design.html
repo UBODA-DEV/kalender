@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="OA-Desing.css">
+    <script>
+        function updateClock() {
+            const jetzt = new Date();
+            const stunden = jetzt.getHours().toString().padStart(2, '0');
+            const minuten = jetzt.getMinutes().toString().padStart(2, '0');
+            const sekunden = jetzt.getSeconds().toString().padStart(2, '0');
+            const uhrzeitText = `${stunden}:${minuten}:${sekunden}`;
+            document.getElementById('clock').textContent = uhrzeitText;
+
+            const wochentage = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+            const wochentag = wochentage[jetzt.getDay()];
+            const tag = jetzt.getDate().toString().padStart(2, '0');
+            const monat = jetzt.toLocaleString('de-DE', { month: 'long' });
+            const jahr = jetzt.getFullYear();
+            const datumText = `${wochentag}, ${tag}. ${monat} ${jahr}`;
+            document.getElementById('date').textContent = datumText;
+        }
+
+        setInterval(updateClock, 1000);
+        window.onload = updateClock;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="relogio">
+            <div id="clock" class="clock"></div>
+            <div id="date" class="date"></div>
+            <div>
+                <img src="KalendarLogo.png" alt="Relógio" class="clock-image">
+            </div>
+        </div>
+        <div class="right-section">
+            <h1>Hey! Schön das Du da Bist!</h1>
+            <nav class="BT-1">
+                <button aria-label="Visualizar dia">Tag</button>
+                <button onclick="location.href='woche.html'" aria-label="Visualizar semana">Woche</button>
+                <button onclick="location.href='monat.html'" aria-label="Visualizar mês">Monat</button>
+            </nav>
+        </div>
+    </div>
+</body>
+
+</html>
