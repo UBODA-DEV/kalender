@@ -26,21 +26,19 @@ db.run(`
     )
 `);
 
-// API para obter compromissos por data e hora
-app.get('/appointments', (req, res) => {
-    const { date, time } = req.query;
-    let query = 'SELECT * FROM appointments WHERE date = ?';
-    let params = [date];
-
-    if (time) {
-        query += ' AND time = ?';
-        params.push(time);
-    }
-
-    db.all(query, params, (err, rows) => {
+// Adicione esta nova rota no seu server.js
+app.get('/appointments/count', (req, res) => {
+    const { startDate, endDate } = req.query;
+    const query = `
+        SELECT date, COUNT(*) as count
+        FROM appointments
+        WHERE date BETWEEN ? AND ?
+        GROUP BY date
+    `;
+    db.all(query, [startDate, endDate], (err, rows) => {
         if (err) {
             console.error(err.message);
-            res.status(500).send('Erro ao buscar compromissos.');
+            res.status(500).send('Erro ao buscar contagem de compromissos.');
         }
         res.json(rows);
     });

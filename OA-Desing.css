@@ -424,3 +424,31 @@ select {
 .backdrop.active {
   display: block;
 }
+
+.time-slot-button.green {
+  background-color: #4CAF50; /* Verde */
+}
+
+.time-slot-button.orange {
+  background-color: #FF9800; /* Laranja */
+}
+
+.time-slot-button.red {
+  background-color: #F44336; /* Vermelho */
+}
+
+.calendar-days td.original-color {
+  background-color: #your-original-color;
+}
+
+.calendar-days td.green {
+  background-color: #4CAF50;
+}
+
+.calendar-days td.orange {
+  background-color: #FF9800;
+}
+
+.calendar-days td.red {
+  background-color: #F44336;
+}
